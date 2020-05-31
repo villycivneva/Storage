@@ -85,8 +85,9 @@ void Storage::addProduct() {
     int d, m, y;
     std::cout<<"Enter the expiration date: (day month year): ";
     std::cin >> d >> m >> y;
-    Date date1(y, m, d);
-    product.setExpirationDate(date1);
+    Date expirationDate(y, m, d);
+    product.setExpirationDate(expirationDate);
+
 
     std::cout<<"Enter the date when the product entry into the storage: (day month year): ";
     std::cin >> d >> m >> y;
@@ -116,7 +117,7 @@ void Storage::addProduct() {
         //if a new product has a different expiration date than an existing product
         // with the same name, it must be placed in a different place
         if (strcmp(tmpName, products[i].getNameOfProduct()) == 0) {
-            if (date1 != products[i].getExpirationDate()) {
+            if (expirationDate != products[i].getExpirationDate()) {
                 // where we want to put it;
                 std::cout << "Enter location different from:" << std::endl;
                 for (int j = 0; j < 3; j++) {
@@ -127,7 +128,7 @@ void Storage::addProduct() {
 
             // If we have enough space - the same products
             // with the same expiration date should be placed in the same place.
-            if (size + 1 <= capacityOfStorage && date1 == products[i].getExpirationDate() && spaceInStorage[index]) {
+            if (size + 1 <= capacityOfStorage && (expirationDate == products[i].getExpirationDate())) {
                 product.setCurrentQuantity(products[i].getCurrentQuantity() + product.getCurrentQuantity());
                 product.setLocationOfProductInStorage(products[i].getLocationOfProductInStorage());
             }
@@ -144,9 +145,11 @@ void Storage::addProduct() {
     std::cin >> arr[0] >> arr[1] >> arr[2];
     product.setLocationOfProductInStorage(arr);
     index = (arr[0] - 1) * 100 + (arr[1] - 1) * 10 + (arr[2] - 1);
-    spaceInStorage[index] = true;
+    if(!spaceInStorage[index]) {
+        spaceInStorage[index] = true;
+    }
 
-
+    std::cout<<"Enter the comment:";
     char tmpComment[255];
     std::cin.get();
     std::cin.getline(tmpComment, 255, '\n');
@@ -171,12 +174,15 @@ void Storage::addProductHelper(const Product& product) {
 
 
 void Storage::removeProduct() {
+    if(size <= 0){
+        return;
+    }
     std::cout << "Enter the name of the product which you want to be removed: ";
     char name[255];
     std::cin.getline(name, 255, '\n');
 
     std::cout << "Enter the quantity that you want to remove: ";
-    size_t quantity;
+    int quantity;
     std::cin >> quantity;
 
     int totalQuantity = 0;
@@ -186,20 +192,19 @@ void Storage::removeProduct() {
             totalQuantity += this->products[i].getCurrentQuantity();
         }
     }
-
     if (totalQuantity < quantity) {
         std::cout << "You have " << totalQuantity << " of this product. Are you sure you want to remove everything?"
                   << std::endl;
         std::cout << "Choose YES or NO:";
-        char answer[3];
+        char answer[4];
         std::cin.get();
-        std::cin.getline(answer, 3, '\n');
+        std::cin.getline(answer, 4, '\n');
 
 
         if (strcmp("NO", answer) == 0)
             return;
         else {
-            removeHelper(name);
+            removeHelper(name,quantity);
         }
     } else {
         bool *array = new bool[capacityOfStorage];
@@ -207,8 +212,7 @@ void Storage::removeProduct() {
         Date currentMin = products[0].getExpirationDate();
         for (int i = 0; i < quantity; i++) {
             int position = 0;
-            // it finds current min neobhoden element
-            for (int j = 1; j < size; j++) {
+            for (int j = i + 1; j < getSize(); j++) {
                 if (this->products[j].getExpirationDate() < currentMin &&
                     strcmp(name, products[j].getNameOfProduct()) == 0 && !array[j]) {
                     currentMin = this->products[j].getExpirationDate();
@@ -216,20 +220,18 @@ void Storage::removeProduct() {
                 }
                 array[position] = true;
             }
-            removeHelper(name);
         }
+        removeHelper(name,quantity);
     }
 }
 
-void Storage::removeHelper(const char* name) {
+void Storage::removeHelper(const char* name, int quantity) {
     Product newProducts[MAX*MAX*MAX];
 
     int index = 0;
     int indexOfSpace = 0;
     for (int i = 0; i < getSize(); i++) {
-
-        if (strcmp(name, this->products[i].getNameOfProduct()) != 0 &&
-            strcmp(products[i].getNameOfProduct(), "N/A") != 0) {
+        if (strcmp(name, this->products[i].getNameOfProduct()) != 0) {
             newProducts[index++] = this->products[i];
         } else {
             indexOfSpace = (products[i].getLocationOfProductInStorage()[0] - 1) * 100
@@ -240,8 +242,11 @@ void Storage::removeHelper(const char* name) {
                 std::cout << products[i].getLocationOfProductInStorage()[k] << ' ';
             }
 
-            if (products[i].getCurrentQuantity() == 0) {
+            if (products[i].getCurrentQuantity() <= quantity) {
                 spaceInStorage[indexOfSpace] = false;
+            } else{
+                products[i].setCurrentQuantity(products[i].getCurrentQuantity() - quantity);
+                newProducts[index++] = products[i];
             }
         }
     }
@@ -277,10 +282,12 @@ void Storage::cleanProduct() {
 
     Date date(year,month,day);
 
+    int _size = this->getSize();
+
     //We clear the storage of all products that have expired or are about to expire.
-    for(int i = 0; i < size ;i++){
-        if(date.isExpiringSoon(products[i].getExpirationDate()) || products[i].getExpirationDate() <  date){
-            removeHelper(products[i].getNameOfProduct());
+    for(int i = 0; i < _size ;i++){
+        if(date.isExpiringSoon(products[i].getExpirationDate()) || products[i].getExpirationDate() < date){
+            removeHelper(products[i].getNameOfProduct(),products[i].getCurrentQuantity());
         }
     }
 }

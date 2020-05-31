@@ -147,6 +147,12 @@ public:
     ///@attention The function has **const** at the end because we don't change anything, we just prints the information.
     void print() const;
 
+    ///This is a mutator for the **size**.
+    ///
+    ///That function allow us to **change** the **size**.
+    ///
+    ///@param newSize -> This is the new size.
+    ///@returns The returns type is **void** , so we return: *Nothing*!
     void setSize(int newSize){ this->size = newSize;}
 
 private:
@@ -160,7 +166,7 @@ private:
 
     int size{0};
 
-    void removeHelper(const char*);
+    void removeHelper(const char*,int);
 };
 
 

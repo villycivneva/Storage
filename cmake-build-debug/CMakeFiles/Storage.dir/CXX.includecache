@@ -12,12 +12,6 @@ fstream
 iostream
 -
 
-C:/Users/Velina/CLionProjects/Storage/Product.cpp
-Product.h
-C:/Users/Velina/CLionProjects/Storage/Product.h
-fstream
--
-
 C:/Users/Velina/CLionProjects/Storage/Product.h
 iostream
 -
@@ -41,18 +35,4 @@ cmath
 -
 Product.h
 C:/Users/Velina/CLionProjects/Storage/Product.h
-
-C:/Users/Velina/CLionProjects/Storage/main.cpp
-iostream
--
-Date.h
-C:/Users/Velina/CLionProjects/Storage/Date.h
-Product.h
-C:/Users/Velina/CLionProjects/Storage/Product.h
-fstream
--
-cstring
--
-Storage.h
-C:/Users/Velina/CLionProjects/Storage/Storage.h
 
