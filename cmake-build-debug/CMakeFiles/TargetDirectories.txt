@@ -1,0 +1,3 @@
+C:/Users/Velina/CLionProjects/Storage/cmake-build-debug/CMakeFiles/Storage.dir
+C:/Users/Velina/CLionProjects/Storage/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Velina/CLionProjects/Storage/cmake-build-debug/CMakeFiles/rebuild_cache.dir

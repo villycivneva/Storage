@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['getcomment_223',['getComment',['../class_product.html#a0c731d931ad64946da1487c20c109ede',1,'Product']]],
+  ['getcurrentquantity_224',['getCurrentQuantity',['../class_product.html#a2151164d7c9b36c26704c94945a6c46d',1,'Product']]],
+  ['getdate_225',['getDate',['../class_date.html#a945e06298e228a96cf00e2f029278d93',1,'Date']]],
+  ['getdateofentryintostorage_226',['getDateOfEntryIntoStorage',['../class_product.html#a2b9727b8de1e2fad8f1d4f94c38a93d8',1,'Product']]],
+  ['getday_227',['getDay',['../class_date.html#a0f253815240e70f4c39cb93cc68bd3f4',1,'Date']]],
+  ['getexpirationdate_228',['getExpirationDate',['../class_product.html#af45ebfd2441c50a1b113132904b2ddc9',1,'Product']]],
+  ['getlocationofproductinstorage_229',['getLocationOfProductInStorage',['../class_product.html#aba741ebf4a9e3feba34c50a6ea95e9da',1,'Product']]],
+  ['getmonth_230',['getMonth',['../class_date.html#a332f6e3a2f6a40d73742b6dab7be0f64',1,'Date']]],
+  ['getnameofmaker_231',['getNameOfMaker',['../class_product.html#afab9af1780b8e0050d2f11eab9cfd0b2',1,'Product']]],
+  ['getnameofproduct_232',['getNameOfProduct',['../class_product.html#ae5299f817deb36a5d1d6b753fd910152',1,'Product']]],
+  ['getnumber_233',['getNumber',['../class_storage.html#acefe5ace2d02ca4dbda90a4ff37c81cb',1,'Storage']]],
+  ['getproducts_234',['getProducts',['../class_storage.html#a7fa965202fa249bffe2a04d397df50cc',1,'Storage']]],
+  ['getsection_235',['getSection',['../class_storage.html#ae240efb30b77ed7e5ac03b215da0d022',1,'Storage']]],
+  ['getshelf_236',['getShelf',['../class_storage.html#a9da725278ebc5f8aafdd9c96f04be461',1,'Storage']]],
+  ['getsize_237',['getSize',['../class_storage.html#a5ed3d7648da22e82337646a432a1eb95',1,'Storage']]],
+  ['getunit_238',['getUnit',['../class_product.html#a2a65bdea18b4fbf97a01fc533bcecc07',1,'Product']]],
+  ['getyear_239',['getYear',['../class_date.html#a8b0869f34c2b38d108ab83ee2e770e5d',1,'Date']]]
+];
